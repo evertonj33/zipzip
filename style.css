@@ -1,0 +1,224 @@
+/* Importa a fonte moderna do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+
+/* Limpa as margens padrão do navegador */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Distribui o espaço vertical de forma idêntica em qualquer celular */
+.conteudo-tela {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5vh 0 7vh 0;
+}
+
+/* Contêiner principal do coração */
+#ui {
+    position: relative;
+    width: 0;
+    height: 0;
+    transform-style: preserve-3d;
+    perspective: 800px;
+    margin-top: 32vh;
+}
+
+#ui .love_word {
+    color: #ea80b0;
+    font-size: 0.7rem !important;
+    position: absolute;
+    text-shadow: 0 0 5px #fff;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+#ui .love_horizontal {
+    animation: roda_gigante 10000ms infinite linear;
+    animation-delay: calc(var(--i) * -250ms);
+}
+
+.nome-centro {
+    position: absolute;
+    color: #ffffff;
+    font-size: 1.3rem !important;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    white-space: nowrap;
+    z-index: 10;
+    background: linear-gradient(45deg, #ffffff, #ffb6c1, #ea80b0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 5px rgba(234, 128, 176, 0.9));
+    animation: batimento 1.5s infinite ease-in-out alternate;
+}
+
+.botoes-container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    z-index: 99;
+    width: 100%;
+}
+
+#btn-abrir {
+    padding: 14px 35px; 
+    background: rgba(20, 20, 20, 0.8);
+    border: 2px solid #ea80b0;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1rem; 
+    border-radius: 30px; 
+    cursor: pointer;
+    white-space: nowrap;
+    box-shadow: 0 0 15px rgba(234, 128, 176, 0.4);
+    transition: all 0.3s ease;
+    width: 80%;
+    max-width: 240px;
+    text-align: center;
+}
+
+#btn-abrir:active {
+    background: #ea80b0;
+    box-shadow: 0 0 25px #ea80b0;
+}
+
+/* Janela Flutuante (Modal) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-conteudo {
+    background: #1a1a1a;
+    border: 1px solid #ea80b0;
+    padding: 30px;
+    width: 92%;
+    max-width: 600px; 
+    max-height: 85vh; 
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 0 0 30px rgba(234, 128, 176, 0.4);
+    overflow-y: auto; 
+}
+
+.btn-fechar {
+    position: absolute;
+    right: 18px;
+    top: 12px;
+    color: #fff;
+    font-size: 32px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+/* ===================================================
+   COMPORTAMENTO DO CARROSSEL NO CELULAR
+   =================================================== */
+.galeria-container {
+    display: flex;
+    flex-direction: column !important;
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.fotos-coluna {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: row !important; /* Move as fotos lado a lado */
+    gap: 15px;
+    overflow-x: auto !important; /* Permite arrastar pro lado */
+    overflow-y: hidden !important;
+    padding: 10px 0;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* TAMANHO HORIZONTAL (DEITADO) PARA AS FOTOS */
+.fotos-coluna img {
+    width: 240px !important;  /* Aumentado para esticar horizontalmente */
+    height: 145px !important; /* Altura ideal proporcional para o formato deitado */
+    border-radius: 12px;
+    border: 2px solid #333;
+    object-fit: cover; /* Garante que a foto preencha o espaço sem amassar */
+    flex-shrink: 0; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.frase-coluna {
+    width: 100% !important;
+    color: #fff;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-align: center;
+    font-weight: 400;
+    border-top: 1px solid #333 !important; 
+    border-left: none !important;
+    padding-top: 15px;
+    padding-left: 0 !important;
+}
+
+/* ===================================================
+   MUDANÇA APENAS PARA TELAS DE PC
+   =================================================== */
+@media (min-width: 769px) {
+    .galeria-container {
+        flex-direction: row !important; 
+    }
+    .fotos-coluna {
+        flex: 1;
+        flex-direction: column !important; 
+        max-height: 400px;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+    .fotos-coluna img {
+        width: 100% !important;
+        height: 200px !important;
+    }
+    .frase-coluna {
+        flex: 1;
+        border-top: none !important;
+        border-left: 1px solid #333 !important; 
+        padding-top: 0;
+        padding-left: 20px !important;
+        display: flex;
+        align-items: center;
+    }
+}
+
+/* Animações */
+@keyframes batimento {
+    0% { transform: translate(-50%, -50%) scale(0.95); }
+    100% { transform: translate(-50%, -50%) scale(1.05); }
+}
+
+@keyframes roda_gigante {
+    0% { transform: translate3d(var(--x), var(--y), var(--z)) rotateZ(0deg); }
+    100% { transform: translate3d(var(--x), var(--y), var(--z)) rotateZ(360deg); }
+}
